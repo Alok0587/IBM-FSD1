@@ -14,7 +14,7 @@ public class BubbleSort {
 		{
 			arr[i]=s.nextInt();
 		}
-		//selection sorting
+		//bubble logic
 		for(int i=0;i<size;i++)
 		{
 			for(int j=0;j<size-1;j++)
