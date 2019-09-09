@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tic toe</title>
+	  <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div id="result" style="background-color: #F25454;height: 200px;width:200px;margin-left:100px;padding: 40px;display: none; float:left;">
+
+	<h5>Player <p id="writeResult"></p> Won The Match:)<br> total Moves:<p id="moves"></p></h5>
+	<script>var sp=document.getElementsByClassName("clickme");
+       sp.attr("id").disabled="true";
+       function restart()
+       {
+            window.location.reload(1);
+       }
+   </script>
+	<input type="button" value="Restart" onclick="restart()">
+
+</div>
+<input type="button" id="st" class="btn-primary btn-lg" value="Start Game" style="margin-left:100px;margin-top: 50px;">
+<div id="xyz" style="background-color: #F25454;height: 350px;width: 200px;margin-left:500px;margin-top:50px;padding: 40px;display: none;">
+<h3><b>TIC-TOE<b></h3><br>
+<h5>Player Turn:&nbsp;<p id="player" style="display: inline;color: #ffff"></h5>
+<br>
+<input type="button" class="btn btn-primary btn-lg clickme" id="A" onclick="record('A')">
+<input type="button" class="btn btn-primary btn-lg clickme" id="B" onclick="record('B')">
+<input type="button" class="btn btn-primary btn-lg clickme" id="C" onclick="record('C')">
+<br>
+<input type="button" class="btn btn-primary btn-lg clickme" id="D" onclick="record('D')">
+<input type="button" class="btn btn-primary btn-lg clickme" id="E" onclick="record('E')">
+<input type="button" class="btn btn-primary btn-lg clickme" id="F" onclick="record('F')">
+<br>
+<input type="button" class="btn btn-primary btn-lg clickme" id="G" onclick="record('G')">
+<input type="button" class="btn btn-primary btn-lg clickme" id="H" onclick="record('H')">
+<input type="button" class="btn btn-primary btn-lg clickme" id="I" onclick="record('I')">
+</div>
+
+<script type="text/javascript">
+	var ar1=[];
+	var ar2=[];
+	var move1=0;
+	var move2=0;
+	var i=0;
+	document.getElementById("player").innerHTML="A";
+	document.getElementById("st").onclick=function()
+	{
+		document.getElementById("xyz").style.display="block";
+		document.getElementById("st").style.display="none";
+	}
+	function record(fd)
+	{
+		var pp=document.getElementById(fd);
+		if(i%2==0)
+		{
+			move1++;
+			ar1[i]=fd;
+			ar2[i]='0';
+	   pp.style.backgroundColor="#E3B6B6";
+	   pp.disabled="true";
+		}
+		else
+		{
+			move2++;
+			ar2[i]=fd;
+			ar1[i]='0';
+			pp.style.backgroundColor="#22D4B0";
+	   pp.disabled="true";
+		}
+		i++;
+		console.log(ar1+"\n"+ar2);
+		//prompting the player
+		if(i%2==1)
+		{
+			document.getElementById("player").innerHTML="B"
+		}
+		else if(i%2==0)
+		{
+			document.getElementById("player").innerHTML="A"
+		}
+		//decide if player won
+		var sum1="";
+		var sum2="";
+		for(var k=0;k<ar1.length;k++)
+		{
+			sum1+=ar1[k];
+		}
+		for(var k=0;k<ar2.length;k++)
+		{
+			sum2+=ar2[k];
+		}
+		console.log(sum1+"  "+sum2);
+	    if(match("ABC",sum1)||match("AEI",sum1)||match("ADG",sum1)||match("BEH",sum1)||match("CFI",sum1)||match("DEF",sum1)||match("GHI",sum1)||match("CEG",sum1))
+	    {
+	    	var light=sum1.split("");
+	    	console.log(light);
+	    	for(var k=0;k<light.length;k++)
+	    	{
+	    		if(light[k]!="0")
+	    		{
+	    			var f=light[k];
+	    			document.getElementById(f).style.backgroundColor="#382AEE";
+	    		}
+	    	}
+	    	document.getElementById("writeResult").innerHTML="A";
+	    	document.getElementById("moves").innerHTML=move1;
+	        document.getElementById("result").style.display="block";
+	        //making it non clickable
+	        document.getElementById("A").disabled="true";
+	        	        document.getElementById("A").disabled="true";
+
+	        document.getElementById("B").disabled="true";
+
+	        document.getElementById("C").disabled="true";
+	        document.getElementById("D").disabled="true";
+
+	        document.getElementById("E").disabled="true";
+
+	        document.getElementById("F").disabled="true";
+	        document.getElementById("G").disabled="true";
+	        document.getElementById("H").disabled="true";
+	        document.getElementById("I").disabled="true";
+
+
+	    	
+	    }
+	    else if(match("ABC",sum2)||match("AEI",sum2)||match("ADG",sum2)||match("BEH",sum2)||match("CFI",sum2)||match("DEF",sum2)||match("GHI",sum2)||match("CEG",sum2))
+	    {
+	    	var light=sum2.split("");
+	    	console.log(light);
+	    	for(var k=0;k<light.length;k++)
+	    	{
+	    		if(light[k]!="0")
+	    		{
+	    			var f=light[k];
+	    			document.getElementById(f).style.backgroundColor="#382AEE";
+	    		}
+	    	}
+	    document.getElementById("writeResult").innerHTML="B";
+	    	    	document.getElementById("moves").innerHTML=move2;
+
+	    document.getElementById("result").style.display="block";
+	    	        //making it non clickable
+	        document.getElementById("A").disabled="true";
+	        	        document.getElementById("A").disabled="true";
+
+	        document.getElementById("B").disabled="true";
+
+	        document.getElementById("C").disabled="true";
+	        document.getElementById("D").disabled="true";
+
+	        document.getElementById("E").disabled="true";
+
+	        document.getElementById("F").disabled="true";
+	        document.getElementById("G").disabled="true";
+	        document.getElementById("H").disabled="true";
+	        document.getElementById("I").disabled="true";
+
+
+	    	
+	    }
+	}
+	//match
+	function match(x,y)
+	{
+		for(var k=0;k<x.length;k++)
+		{
+			var temp=x.charAt(k);
+			if(!y.includes(temp))
+			{
+				return false;
+			}
+
+		}
+		return true;
+
+	}
+</script>
+</body>
+</html>
